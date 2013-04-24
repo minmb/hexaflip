@@ -286,7 +286,11 @@
         return;
       }
       e.preventDefault();
-      cube.diff = (e[this.eProp] - cube.start) * this.touchSensitivity;
+			if (e.type === 'mousemove') {
+				cube.diff = e[this.eProp] - cube.start;
+			} else {
+				cube.diff = (e.touches[0][this.eProp] - cube.start) * this.touchSensitivity;
+			}
       cube.delta = cube.last - cube.diff;
       return this._setSides(cube);
     };
