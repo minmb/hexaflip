@@ -484,3 +484,7 @@
   }
 
 }).call(this);
+
+/*
+//@ sourceMappingURL=hexaflip.map
+*/
