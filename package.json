@@ -1,0 +1,23 @@
+{
+  "name": "hexaflip",
+  "version": "0.0.5",
+  "description": "Visualizes arrays as cube interfaces",
+  "main": "hexaflip.js",
+  "devDependencies": {
+    "coffee-script": "~1.6.2",
+    "nib": "~0.9.1",
+    "stylus": "~0.32.1",
+    "uglify-js": "~2.3.6"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/dmotz/hexaflip.git"
+  },
+  "author": "Dan Motzenbecker",
+  "license": "MIT",
+  "readmeFilename": "README.md",
+  "gitHead": "be3f444a8532ad290c1ee62c6c3d01cd24226c39"
+}
