@@ -1,5 +1,5 @@
 {exec, spawn} = require 'child_process'
-nibArg = '--include /usr/local/share/npm/lib/node_modules/nib/lib/'
+nibArg = '-u nib'
 
 output = (data) -> console.log data.toString()
 
