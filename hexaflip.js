@@ -152,7 +152,6 @@
         set: set,
         offset: 0,
         start: 0,
-        isScrolling: undefined,
         delta: 0,
         last: 0,
         el: document.createElement('div'),
@@ -291,50 +290,24 @@
     };
 
     HexaFlip.prototype._onTouchStart = function(e, cube) {
-      //e.preventDefault();
-
+      e.preventDefault();
       cube.touchStarted = true;
-      cube.isScrolling = undefined;
       cube.holder.classList.add('no-tween');
       if (e.type === 'mousedown') {
-        return cube.start = {
-					x: e['pageX'],
-					y: e['pageY']
-				}
+        return cube.start = e[this.eProp];
       } else {
-        return cube.start = {
-					x: e.touches[0]['pageX'],
-					y: e.touches[0]['pageY']
-      	}
-			}
+        return cube.start = e.touches[0][this.eProp];
+      }
     };
 
     HexaFlip.prototype._onTouchMove = function(e, cube) {
-      if (!cube.touchStarted) return;
-
-			if (e.type === 'mousemove') {
-				cube.diff = {
-					x: e['pageX'] - cube.start.x,
-					y: e['pageY'] - cube.start.y
-				}
-			} else {
-				cube.diff = {
-					x: (e.touches[0]['pageX'] - cube.start.x) * this.touchSensitivity,
-					y: (e.touches[0]['pageY'] - cube.start.y) * this.touchSensitivity
-				}
-			}
-			
-			// determine if scrolling test has run - one time test
-			if ( typeof cube.isScrolling == 'undefined') {
-				cube.isScrolling = !!( cube.isScrolling || Math.abs(cube.diff.x) < Math.abs(cube.diff.y) );
-			}
-			
-			//if user is not trying to scroll vertically
-			if (!cube.isScrolling) {
-				e.preventDefault();
-	      cube.delta = cube.last - cube.diff.x;
-	      return this._setSides(cube);	
-			}
+      if (!cube.touchStarted) {
+        return;
+      }
+      e.preventDefault();
+      cube.diff = (e[this.eProp] - cube.start) * this.touchSensitivity;
+      cube.delta = cube.last - cube.diff;
+      return this._setSides(cube);
     };
 
     HexaFlip.prototype._onTouchEnd = function(e, cube) {
@@ -416,7 +389,7 @@
           offset %= setLength;
         }
         if (typeof set[offset] === 'object') {
-          _results.push(set[offset]);
+          _results.push(set[offset].value);
         } else {
           _results.push(set[offset]);
         }

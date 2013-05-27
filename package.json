@@ -1,6 +1,6 @@
 {
   "name": "hexaflip",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Visualizes arrays as cube interfaces",
   "main": "hexaflip.js",
   "devDependencies": {
