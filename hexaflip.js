@@ -124,8 +124,8 @@
       this.el.style[css.perspective] = this.perspective + 'px';
       this.el.appendChild(cubeFragment);
       this.eProp = this.horizontalFlip ? 'pageX' : 'pageY';
-      if (this.domEvents) {
-        _ref3 = this.domEvents;
+      if (this.options.events) {
+        _ref3 = this.options.events;
         _fn = function(fn) {
           return _this.el.addEventListener(type, function(e) {
             var target;
