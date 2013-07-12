@@ -234,7 +234,9 @@
       }
       if (urlRx.test(value)) {
         el.innerHTML = '';
-        return el.style.backgroundImage = "url(" + value + ")";
+        if (el.style.backgroundImage == '')
+            el.style.backgroundImage = "url(" + value + ")"
+        return el.style.backgroundImage;
       } else {
         return el.innerHTML = value;
       }
