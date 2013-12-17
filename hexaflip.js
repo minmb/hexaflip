@@ -154,8 +154,10 @@
             _j;
             
         this.el.style.width = this.el.style.height = cube.el.style.width = cube.el.style.height = cube.holder.style.width = cube.holder.style.height = this.size + 'px';
-        cube.holder.style[css.transform] = this._getTransform(0);
         
+        cube.holder.style[css.transform] = this._getTransform(0);
+        cube.delta = cube.last = 0;
+                
         for (_j = 0, _len1 = faceNames.length; _j < _len1; _j++) {
             side = faceNames[_j];
             rotation = (function() {
