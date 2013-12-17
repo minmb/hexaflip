@@ -144,6 +144,40 @@
         this.domEvents = null;
       }
     }
+    
+    HexaFlip.prototype.updatePosition = function(newSize){
+       
+        this.size = newSize - this.margin;
+        var cube = Cube._cube.cubes[Object.keys(Cube._cube.sets)[0]],
+            rotation,
+            _len1,
+            _j;
+            
+        this.el.style.width = this.el.style.height = cube.el.style.width = cube.el.style.height = cube.holder.style.width = cube.holder.style.height = this.size + 'px';
+        cube.holder.style[css.transform] = this._getTransform(0);
+        
+        for (_j = 0, _len1 = faceNames.length; _j < _len1; _j++) {
+            side = faceNames[_j];
+            rotation = (function() {
+              switch (side) {
+                case 'front':
+                  return '';
+                case 'back':
+                  return 'rotateX(180deg)';
+                case 'top':
+                  return 'rotateX(90deg)';
+                case 'bottom':
+                  return 'rotateX(-90deg)';
+                case 'left':
+                  return 'rotateY(-90deg)';
+                case 'right':
+                  return 'rotateY(90deg)';
+              }
+            })();
+            cube[side].style[css.transform] = ("" + rotation + " translate3d(0, 0, " + (this.size / 2) + "px)") + (this.horizontalFlip ? 'rotateZ(90deg)' : '');
+        }
+        
+    };
 
     HexaFlip.prototype._createCube = function(set) {
       var cube, eString, eventPair, eventPairs, mouseLeaveSupport, rotation, side, sideProto, _fn, _j, _k, _l, _len1, _len2, _len3,
