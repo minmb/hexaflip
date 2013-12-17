@@ -121,6 +121,7 @@
       this.el.classList.add(cssClass);
       this.el.style.height = this.size + 'px';
       this.el.style.width = ((this.size + this.margin * 2) * setsLength) - this.margin * 2 + 'px';
+      cube.el.style.marginTop = (this.margin / 2) + "px";
       this.el.style[css.perspective] = this.perspective + 'px';
       this.el.appendChild(cubeFragment);
       this.eProp = this.horizontalFlip ? 'pageX' : 'pageY';
