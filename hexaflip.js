@@ -38,7 +38,8 @@
     fontSize: 132,
     perspective: 1000,
     touchSensitivity: 1,
-    horizontalFlip: false
+    horizontalFlip: false,
+    domEvents: null
   };
 
   cssClass = baseName.toLowerCase();
@@ -119,7 +120,7 @@
       this.cubes[setsKeys[0]].el.style.marginLeft = '0';
       this.cubes[setsKeys[setsKeys.length - 1]].el.style.marginRight = '0';
       this.el.classList.add(cssClass);
-      this.el.style.height = this.size + 'px';
+      this.el.style.height = this.options.height + 'px';
       this.el.style.width = ((this.size + this.margin * 2) * setsLength) - this.margin * 2 + 'px';
       cube.el.style.marginTop = (this.margin / 2) + "px";
       this.el.style[css.perspective] = this.perspective + 'px';
@@ -153,11 +154,11 @@
             _len1,
             _j;
             
-        this.el.style.width = this.el.style.height = cube.el.style.width = cube.el.style.height = cube.holder.style.width = cube.holder.style.height = this.size + 'px';
+        this.el.style.width = cube.el.style.width = cube.holder.style.width = this.size + 'px';
         
         cube.holder.style[css.transform] = this._getTransform(0);
         cube.delta = cube.last = 0;
-                
+        
         for (_j = 0, _len1 = faceNames.length; _j < _len1; _j++) {
             side = faceNames[_j];
             rotation = (function() {
@@ -180,7 +181,7 @@
         }
         
     };
-
+    
     HexaFlip.prototype._createCube = function(set) {
       var cube, eString, eventPair, eventPairs, mouseLeaveSupport, rotation, side, sideProto, _fn, _j, _k, _l, _len1, _len2, _len3,
         _this = this;
@@ -197,8 +198,10 @@
       };
       cube.el.className = "" + cssClass + "-cube " + cssClass + "-cube-" + set;
       cube.el.style.margin = "0 " + this.margin + "px";
-      cube.el.style.width = cube.el.style.height = cube.holder.style.width = cube.holder.style.height = this.size + 'px';
+      cube.el.style.width = cube.holder.style.width = this.size + 'px';
+      cube.el.style.height = cube.holder.style.height = this.options.height + 'px';
       cube.holder.style[css.transform] = this._getTransform(0);
+      cube.holder.className = "" + cssClass + "-holder";
       sideProto = document.createElement('div');
       sideProto.classList.add(cssClass + '-side');
       for (_j = 0, _len1 = faceNames.length; _j < _len1; _j++) {
@@ -246,7 +249,9 @@
           _fn('_on' + eventPair[0], cube);
         }
       }
-      this._setSides(cube);
+      /* Load only front image. reset will load on interaction */
+      //this._setSides(cube);
+      
       return cube;
     };
 
@@ -520,6 +525,3 @@
 
 }).call(this);
 
-/*
-//@ sourceMappingURL=hexaflip.map
-*/
