@@ -271,9 +271,7 @@
       }
       if (urlRx.test(value)) {
         el.innerHTML = '';
-        if (el.style.backgroundImage == '')
-            el.style.backgroundImage = "url(" + value + ")"
-        return el.style.backgroundImage;
+        return el.style.backgroundImage = "url(" + value + ")";
       } else {
         return el.innerHTML = value;
       }
