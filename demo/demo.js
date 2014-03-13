@@ -7,7 +7,10 @@
   text2 = 'FLIP'.split('');
 
   logoSettings = {
-    size: 120,
+    size: {
+        width: 120,
+        height: 120
+    },
     margin: 8,
     fontSize: 82,
     perspective: 450
