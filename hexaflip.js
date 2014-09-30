@@ -285,6 +285,8 @@ $(function(){
                 if (el.style.backgroundImage == '')
                     el.style.backgroundImage = "url(" + value + ")"
                 return el.style.backgroundImage;
+            } else if(typeof document.querySelector(value) == 'object'){
+                return el.insertBefore(document.querySelector(value),el.firstChild);
             } else {
                 return el.innerHTML = value;
             }
